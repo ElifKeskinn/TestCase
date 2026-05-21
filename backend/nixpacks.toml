@@ -1,0 +1,24 @@
+# Nixpacks build plan for Railway deployment.
+# Railway will detect this file and build using these phases.
+
+[phases.setup]
+nixPkgs = ["php82", "php82Packages.composer", "sqlite"]
+
+[phases.install]
+cmds = [
+  "composer install --no-dev --optimize-autoloader --no-interaction",
+  "test -f .env || cp .env.example .env",
+  "php artisan key:generate --force",
+]
+
+[phases.build]
+cmds = [
+  "touch database/database.sqlite",
+  "php artisan migrate --force",
+  "php artisan db:seed --force",
+  "php artisan config:cache",
+  "php artisan route:cache",
+]
+
+[start]
+cmd = "php -S 0.0.0.0:$PORT -t public"
