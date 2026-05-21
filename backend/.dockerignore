@@ -1,0 +1,17 @@
+.git
+.gitignore
+.env
+.env.local
+.env.backup
+vendor/
+node_modules/
+storage/logs/*.log
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+.phpunit.cache/
+.phpunit.result.cache
+database/database.sqlite
+database/database.sqlite-journal
+database/database.sqlite-shm
+database/database.sqlite-wal

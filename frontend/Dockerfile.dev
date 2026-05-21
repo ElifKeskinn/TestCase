@@ -1,0 +1,18 @@
+# Local development image for `docker compose up`.
+# Production deploys to Vercel use the built-in Vite pipeline — this file is NOT used in production.
+
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Layer cache: install dependencies first
+COPY package*.json ./
+RUN npm ci
+
+# Copy source
+COPY . .
+
+EXPOSE 5173
+
+# Vite dev server bound to all interfaces so the host can reach it.
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]

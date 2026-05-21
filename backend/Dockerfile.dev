@@ -1,0 +1,37 @@
+# Local development image for `docker compose up`.
+# Production deploys to Railway use `nixpacks.toml` — this file is NOT used in production.
+
+FROM php:8.3-cli
+
+WORKDIR /app
+
+# System packages needed for Laravel + SQLite + Composer
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libsqlite3-dev \
+        libonig-dev \
+        libzip-dev \
+        zip \
+        unzip \
+        git \
+    && rm -rf /var/lib/apt/lists/*
+
+# PHP extensions required by Laravel 11 + this project
+RUN docker-php-ext-install pdo pdo_sqlite mbstring zip
+
+# Composer from official image
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Copy source and install dependencies (dev image — no --no-dev)
+COPY . .
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
+# Prepare env + sqlite file
+RUN cp .env.example .env \
+    && php artisan key:generate --force \
+    && mkdir -p database \
+    && touch database/database.sqlite
+
+EXPOSE 8000
+
+# Run migrations + seed, then start PHP's built-in server.
+CMD ["sh", "-c", "php artisan migrate --seed --force && php -S 0.0.0.0:8000 -t public"]

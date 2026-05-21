@@ -19,6 +19,14 @@ Frontend Vercel üzerinde, backend Railway üzerinde host ediliyor. Frontend'i a
 | Test | PHPUnit (backend) · Vitest + @vue/test-utils (frontend) |
 | Deploy | Railway (backend) · Vercel / Netlify (frontend) |
 
+## Database Seçimi
+
+**SQLite** tercih edildi. Gerekçeler:
+- Take-home scope (4 takım, 12 maç, single-user) için tek dosya bir DB fazlasıyla yeterli.
+- Zero-config local setup ve hızlı deploy (Railway nixpacks doğrudan PHP + SQLite paketliyor; ek DB servisi gerektirmiyor).
+- Eloquent ORM driver-agnostik — production gereksinimi MySQL/PostgreSQL olursa `config/database.php` üzerinden tek ENV değişimi yeterli, business logic ve migration'lar olduğu gibi çalışır (CHECK constraints MySQL 8+ ve PostgreSQL'de destekleniyor).
+- Migration'larda DB-level CHECK constraint'ler (P=W+D+L, GD=GF-GA, points=3W+D, skor 0..20 vb.) tanımlı; bunlar driver bağımsız invariant'lardır.
+
 ## Önkoşullar
 
 Aşağıdakilerin sisteminde kurulu olması gerekiyor:
@@ -29,6 +37,8 @@ Aşağıdakilerin sisteminde kurulu olması gerekiyor:
 - **npm 10+** — `npm --version`
 
 PHP eklentileri: `pdo_sqlite`, `sqlite3`, `mbstring`, `openssl`, `curl`, `zip`, `fileinfo` aktif olmalı.
+
+> **Alternatif**: Docker Desktop kurulu ise tek komutla çalıştırabilirsiniz: `docker compose up` (aşağıdaki "Docker ile Çalıştırma" bölümüne bakın).
 
 ## Hızlı Başlangıç
 
@@ -56,6 +66,21 @@ npm run dev
 ```
 
 Frontend `http://localhost:5173` adresinde açılır ve `/api` isteklerini backend'e proxy eder (`vite.config.ts`).
+
+## Docker ile Çalıştırma (opsiyonel)
+
+Docker Desktop kurulu ise tek komutla hem backend hem frontend ayağa kalkar:
+
+```bash
+docker compose up --build
+```
+
+- Backend: `http://localhost:8000`
+- Frontend: `http://localhost:5173`
+
+Container'lar `testcase-backend` ve `testcase-frontend` olarak isimlendirilir. Durdurmak için: `docker compose down`.
+
+> **Not**: Production deploy'da Docker kullanılmıyor (Backend → Railway nixpacks, Frontend → Vercel build). `Dockerfile.dev` ve `docker-compose.yml` yalnızca lokal geliştirme için.
 
 ### 3) Tarayıcıdan kullanım
 

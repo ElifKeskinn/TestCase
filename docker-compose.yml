@@ -1,0 +1,41 @@
+# Local development orchestration.
+# - Production deploys do NOT use Docker:
+#     Backend  -> Railway via backend/nixpacks.toml
+#     Frontend -> Vercel via frontend/vercel.json
+# - This file exists only to provide a one-command local dev experience:
+#     docker compose up --build
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: testcase-backend
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      LOG_LEVEL: debug
+      DB_CONNECTION: sqlite
+      FRONTEND_URL: http://localhost:5173
+    networks:
+      - testcase-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: testcase-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_BASE_URL: http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - testcase-net
+
+networks:
+  testcase-net:
+    driver: bridge
