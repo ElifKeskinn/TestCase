@@ -2,6 +2,14 @@
 
 Premier League formatında 4 takımlı bir mini lig simülatörü. Olasılıksal maç motoru, dinamik şampiyonluk tahmini, "Play All Weeks" ve "Edit Match" özelliklerini içerir.
 
+## 🚀 Live Demo
+
+- **Frontend (Vue 3 SPA)**: https://test-case-black.vercel.app
+- **Backend API**: https://testcase-production-ed2b.up.railway.app
+- **API health check**: https://testcase-production-ed2b.up.railway.app/api/league/state
+
+Frontend Vercel üzerinde, backend Railway üzerinde host ediliyor. Frontend'i açıp **Generate Fixtures → Start Simulation → Play Next Week / Play All Weeks** akışını deneyebilirsiniz.
+
 ## Tech Stack
 
 | Katman | Teknoloji |
