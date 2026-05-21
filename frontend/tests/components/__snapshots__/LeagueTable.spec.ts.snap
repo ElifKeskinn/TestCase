@@ -1,0 +1,58 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LeagueTable.vue > matches the snapshot for a known standings input 1`] = `
+"<section class="card" aria-labelledby="league-table-heading">
+  <h2 id="league-table-heading">League Table</h2>
+  <table class="data-table" data-testid="league-table" aria-describedby="league-table-heading">
+    <thead>
+      <tr>
+        <th scope="col">Team</th>
+        <th scope="col" class="numeric">PTS</th>
+        <th scope="col" class="numeric">P</th>
+        <th scope="col" class="numeric">W</th>
+        <th scope="col" class="numeric">D</th>
+        <th scope="col" class="numeric">L</th>
+        <th scope="col" class="numeric">GD</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-rank="1">
+        <td>Manchester City</td>
+        <td class="numeric"><strong>3</strong></td>
+        <td class="numeric">1</td>
+        <td class="numeric">1</td>
+        <td class="numeric">0</td>
+        <td class="numeric">0</td>
+        <td class="numeric">+2</td>
+      </tr>
+      <tr data-rank="2">
+        <td>Chelsea</td>
+        <td class="numeric"><strong>3</strong></td>
+        <td class="numeric">1</td>
+        <td class="numeric">1</td>
+        <td class="numeric">0</td>
+        <td class="numeric">0</td>
+        <td class="numeric">+1</td>
+      </tr>
+      <tr data-rank="3">
+        <td>Arsenal</td>
+        <td class="numeric"><strong>0</strong></td>
+        <td class="numeric">1</td>
+        <td class="numeric">0</td>
+        <td class="numeric">0</td>
+        <td class="numeric">1</td>
+        <td class="numeric">-1</td>
+      </tr>
+      <tr data-rank="4">
+        <td>Liverpool</td>
+        <td class="numeric"><strong>0</strong></td>
+        <td class="numeric">1</td>
+        <td class="numeric">0</td>
+        <td class="numeric">0</td>
+        <td class="numeric">1</td>
+        <td class="numeric">-2</td>
+      </tr>
+    </tbody>
+  </table>
+</section>"
+`;

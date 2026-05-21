@@ -1,0 +1,37 @@
+{
+  "name": "insider-one-champions-league-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Insider One Champions League — frontend (Vue 3 + Vite + Pinia)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "build:no-typecheck": "vite build",
+    "preview": "vite preview --port 5173",
+    "test:unit": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint --ext .ts,.vue src tests",
+    "format": "prettier --write \"src/**/*.{ts,vue,css}\" \"tests/**/*.{ts,vue}\""
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "pinia": "^2.2.4",
+    "vue": "^3.5.12",
+    "vue-router": "^4.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.19",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.5.1",
+    "jsdom": "^25.0.1",
+    "typescript": "~5.6.3",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.4",
+    "vue-tsc": "^2.1.10"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
