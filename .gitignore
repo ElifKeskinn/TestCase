@@ -1,0 +1,83 @@
+# ============================================================
+# Root .gitignore — defense in depth (backend/frontend kendi .gitignore'larına EK)
+# ============================================================
+
+# ---- Secrets / Environment ----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ---- PHP / Laravel ----
+/backend/vendor/
+/backend/node_modules/
+/backend/.env
+/backend/.env.backup
+/backend/.phpunit.result.cache
+/backend/.phpunit.cache/
+/backend/storage/*.key
+/backend/storage/app/public/
+/backend/storage/framework/cache/data/*
+/backend/storage/framework/sessions/*
+/backend/storage/framework/testing/*
+/backend/storage/framework/views/*
+/backend/storage/logs/*.log
+/backend/bootstrap/cache/*.php
+/backend/public/storage
+/backend/public/hot
+/backend/database/database.sqlite
+/backend/database/database.sqlite-journal
+/backend/database/database.sqlite-shm
+/backend/database/database.sqlite-wal
+/backend/database/*.sqlite
+/backend/database/*.sqlite-journal
+auth.json
+
+# ---- Node / Vue / Vite ----
+/frontend/node_modules/
+/frontend/dist/
+/frontend/dist-ssr/
+/frontend/.env
+/frontend/.env.*
+!/frontend/.env.example
+/frontend/.vite/
+/frontend/.vitepress/cache
+*.local
+.eslintcache
+
+# ---- Editor / tooling artifacts ----
+.claude/
+CLAUDE.md
+.aider*
+.cursor*
+.copilot*
+
+# ---- IDE / OS ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ---- Logs / Temp ----
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- Coverage / Reports ----
+coverage/
+.nyc_output/
+junit.xml
+phpunit-report.xml
+
+# ---- Misc temp ----
+/temp_frames/
+*.tmp
+*.bak
